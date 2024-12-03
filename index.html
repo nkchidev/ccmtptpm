@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calculator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f0f0;
+      text-align: center;
+      padding: 20px;
+    }
+    .calculator {
+      background: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      display: inline-block;
+    }
+    .calculator input {
+      width: 80%;
+      padding: 10px;
+      margin: 10px 0;
+      font-size: 18px;
+    }
+    .calculator button {
+      width: 40%;
+      padding: 10px;
+      margin: 5px;
+      font-size: 18px;
+      border: none;
+      border-radius: 5px;
+      background-color: #4CAF50;
+      color: white;
+      cursor: pointer;
+    }
+    .calculator button:hover {
+      background-color: #45a049;
+    }
+    .result {
+      margin-top: 20px;
+      font-size: 20px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="calculator">
+    <h1>Máy tính cơ bản</h1>
+    <input type="number" id="firstNumber" placeholder="Enter first number">
+    <input type="number" id="secondNumber" placeholder="Enter second number">
+    <br>
+    <button onclick="calculate('+')">+</button>
+    <button onclick="calculate('-')">-</button>
+    <button onclick="calculate('*')">×</button>
+    <button onclick="calculate('/')">÷</button>
+    <div class="result" id="result">Result: </div>
+  </div>
+
+  <script>
+    function calculate(operation) {
+      // Lấy giá trị từ các input
+      const firstNumber = parseFloat(document.getElementById("firstNumber").value);
+      const secondNumber = parseFloat(document.getElementById("secondNumber").value);
+
+      if (isNaN(firstNumber) || isNaN(secondNumber)) {
+        document.getElementById("result").innerText = "Result: Please enter valid numbers!";
+        return;
+      }
+
+      let result;
+      switch (operation) {
+        case '+':
+          result = firstNumber + secondNumber;
+          break;
+        case '-':
+          result = firstNumber - secondNumber;
+          break;
+        case '*':
+          result = firstNumber * secondNumber;
+          break;
+        case '/':
+          if (secondNumber === 0) {
+            document.getElementById("result").innerText = "Result: Cannot divide by zero!";
+            return;
+          }
+          result = firstNumber / secondNumber;
+          break;
+      }
+
+      // Hiển thị kết quả
+      document.getElementById("result").innerText = `Result: ${result}`;
+    }
+  </script>
+</body>
+</html>
